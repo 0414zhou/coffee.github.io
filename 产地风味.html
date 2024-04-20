@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产地风味</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .shell {
+            width: 100%;
+            position: relative;
+            padding: 80px 0;
+            transition: 0.3s ease 0s;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .shell:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(99, 99, 99, 0.8);
+            content: "";
+        }
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        .title {
+            color:#fff;
+            font-size: 46px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .timeline {
+            display: flex;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            flex-direction: column;
+            max-width: 700px;
+            position: relative;
+        }
+        .content-title {
+            font-weight: normal;
+            font-size: 40px;
+            margin: -10px 0 0 0;
+            transition: 0.4s;
+            padding: 0 10px;
+            box-sizing: border-box;
+            color: #fff;
+        }
+        .content-desc {
+            margin: 0;
+            font-size: 15px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 25px;
+        }
+        .timeline:before {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            content: "";
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .item {
+            padding: 40px 0;
+            opacity: 0.3;
+            filter: blur(2px);
+            transition: 0.5s;
+            box-sizing: border-box;
+            width: calc(50% - 40px);
+            display: flex;
+            position: relative;
+            transform: translateY(-80px);
+        }
+        .item:before {
+            content: attr(data-text);
+            letter-spacing: 3px;
+            width: 100%;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 38px;
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+            top: 70%;
+            margin-top: -5px;
+            padding-left: 15px;
+            opacity: 0;
+            right: calc(-100% - 56px);
+            font: 900 20px;
+            letter-spacing: 5px;
+        }
+
+        .item:nth-child(even) {
+            align-self: flex-end;
+        }
+        .item:nth-child(even):before {
+            right:auto;
+            text-align: right;
+            left: calc(-100% - 56px);
+            padding-left: 0;
+            border-left: none;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            padding-right: 15px;
+        }
+        .item--active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+        .item--active:before {
+            top: 50%;
+            transition: 0.3s all 0.2s;
+            opacity: 1;
+        }
+        .item--active .content-title {
+            margin: -50px 0 20px 0;
+        }
+        .img {
+            max-width: 100%;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+        .subtitle {
+            color:rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            letter-spacing: 5px;
+            margin: 10px 0 0 0;
+            font-weight: normal;
+        }
+        .footer {
+            padding: 95px 0;
+            text-align: center;
+        }
+        .footer a {
+            color: #999;
+            display: inline-block;
+        }
+        @media only screen and (max-width: 767px) {
+            .item {
+                align-self: baseline !important;
+                width: 100%;
+                padding: 0 30px 150px 80px;
+            }
+            .item:before {
+                left: 10px !important;
+                padding: 0 !important;
+                top: 50px;
+                text-align: center !important;
+                width: 60px;
+                border: none !important;
+            }
+            .item:last-child {
+                padding-bottom: 40px;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .timeline:before {
+                left: 40px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="shell" id="shell">
+        <div class="header">
+            <h2 class="title">咖啡产地及风味</h2>
+            <h3 class="subtitle">美洲、非洲、亚洲</h3>
+        </div>
+        <div class="timeline">
+            </div>
+            </div>
+    <script>
+            function createChild() {
+      let box = document.querySelector('.timeline');
+      const child = `   
+      <div class="item" data-text="水洗、日晒">
+            <div class="content">
+                <img src="图片素材/墨西哥.jpg" alt="" class="img">
+                <h2 class="content-title">墨西哥</h2>
+                <p class="content-desc">
+                    墨西哥在12个州大约76万公顷的土地上种植咖啡。这些州的土壤通常是酸性，有助于咖啡特性的形成。墨西哥的大多数咖啡农场都很小（不到25公顷），它们共同组成专门生产有机咖啡的合作社。最大的产区是恰帕斯州（Chiapas），该州与危地马拉最好的种植区在同一山脉上，这个产区的产量约占墨西哥咖啡总产量的三分之一。在美国，许多烘焙商会根据口碑好的咖啡加工厂或农场的名字来购买墨西哥豆。这些咖啡有望为我们呈现出人们偏爱的酸甜口感、太妃糖和巧克力的味道、轻盈的醇厚度和奶油质地。
+
+                </p>
+            </div>
+        </div>
+        <div class="item" data-text="水洗">
+        <div class="content">
+            <img src="图片素材/哥斯达黎加.jpg" alt="" class="img">
+            <h2 class="content-title">哥斯达黎加</h2>
+            <p class="content-desc">
+                哥斯达黎加最著名的地区塔拉苏采用非常先进的种植技术，生产出口感十分干净的咖啡，该地区的咖啡产量占全国近三分之一。该国的咖啡总体上被认为是中美洲咖啡的黄金标准——富有微妙而复杂的香气，干净、明亮，含柑橘香，高海拔豆的甜感也更明显。数百年来一直种植咖啡的中小型农场已在买家中有了质量稳定的声誉。
+
+            </p>
+        </div>
+    </div>
+    <div class="item" data-text="水洗">
+    <div class="content">
+        <img src="图片素材/危地马拉.jpg" alt="" class="img">
+        <h2 class="content-title">危地马拉</h2>
+        <p class="content-desc">
+            来自危地马拉高地的咖啡被认为是世界上最好的咖啡之一，这种咖啡浓厚的酸度和口感会让你大吃一惊。该国最著名的产区之一是安提瓜，坐落在三座火山之中，火山带来了咖啡最喜欢的富含矿物质的土壤。安提瓜的咖啡风味带有浓重的泥土味道，呈现出香料、花香和烟熏味。
+        </p>
+    </div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/洪都拉斯.jpg" alt="" class="img">
+    <h2 class="content-title">洪都拉斯</h2>
+    <p class="content-desc">
+        来自危地马拉高地的咖啡被认为是世界上最好的咖啡之一，这种咖啡浓厚的酸度和口感会让你大吃一惊。该国最著名的产区之一是安提瓜，坐落在三座火山之中，火山带来了咖啡最喜欢的富含矿物质的土壤。安提瓜的咖啡风味带有浓重的泥土味道，呈现出香料、花香和烟熏味。
+
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/蓝山咖啡.webp" alt="" class="img">
+    <h2 class="content-title">牙买加蓝山</h2>
+    <p class="content-desc">
+        牙买加是加勒比海的第三大岛，也是世界上最贵的精品咖啡之一——蓝山咖啡的发源地。据说它的品质极好，具有丰富的风味、明亮的酸度、浓郁的醇厚度和甜感。也有人认为牙买加咖啡缺乏复杂性和多汁感，不符合人们对高品质精品豆的期待。日本每年都抢购大量牙买加咖啡，其中会有一部分销往美国。因为这种咖啡豆很稀有，欺诈性的蓝山标签随处可见。
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗、日晒">
+<div class="content">
+    <img src="图片素材/瑰夏.jpg" alt="" class="img">
+    <h2 class="content-title">巴拿马瑰夏</h2>
+    <p class="content-desc">
+        大约80%的巴拿马咖啡种植在西部奇里基山区的博克特镇附近，那里有一百多年的咖啡历史，可以种植出世界上最好的咖啡。瑰夏是世界上最好的品种之一，许多巴拿马种植者如著名的翡翠庄园，已将大部分土地专门用于种植瑰夏。巴拿马最好的瑰夏呈现出咖啡豆最好的风味：茉莉花香、明亮的柑橘酸味和独特的佛手柑香味。巴拿马独一无二的天然环境造就了各种小气候，能够种植出带有香草、枫糖浆、柑橘和葡萄酒等各种各样风味的咖啡豆。
+    </p>
+</div>
+</div>
+<div class="item" data-text="日晒、蜜处理">
+<div class="content">
+    <img src="图片素材/巴西.jpg" alt="" class="img">
+    <h2 class="content-title">巴西</h2>
+    <p class="content-desc">
+        巴西生产商倾向于使用日晒处理法和果肉日晒处理法，增加了咖啡豆的甜感和复杂性，以弥补酸感的缺乏，从而形成了本国的特色风味。如果你不喜欢酸味的咖啡，巴西咖啡是一种不错的选择。也有使用水洗处理法的，但很少。尽管巴西咖啡在2000年初以品质优良著称，但现在专业人士似乎对巴西咖啡怀有复杂的情绪。值得一提的是，安德烈亚斯近年来最喜欢的一些单一产地浓缩咖啡来自巴西。巴西咖啡非常值得尝试，尤其是如果你喜欢口感温和的咖啡的话。
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/哥伦比亚.jpg" alt="" class="img">
+    <h2 class="content-title">哥伦比亚</h2>
+    <p class="content-desc">
+        哥伦比亚在“精品咖啡”出现之前就提出了单品咖啡的理念，它的阿拉比卡豆产量位居全球榜首，与越南争坐世界咖啡产量大国的第二把交椅（越南97%的咖啡作物是罗布斯塔豆，这个国家刚刚开始发展精品咖啡。
+与其他国家不同，哥伦比亚的大多数生产商有自己的处理厂，这有助于控制品质。与此同时，他们用传统方式而不是通过杯测的方法将咖啡进行分类、评分和包装，这使得咖啡的整体品质下降，又让人难以追溯咖啡的种植区。杯测和单独包装单一庄园的咖啡豆对精品咖啡市场来说非常重要，所以现在哥伦比亚也在逐渐采取这些方式。如果你想品尝到真正哥伦比亚风味的咖啡，一定要选择包装上注明了产区或庄园的咖啡豆，这样概率会大一些。
+
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/刚果.jpg" alt="" class="img">
+    <h2 class="content-title">刚果</h2>
+    <p class="content-desc">
+        基伍湖影响着刚果民主共和国（和卢旺达）的咖啡（就像该地区的其他大湖影响着其他东非国家的咖啡一样），天然环境给咖啡带来了特别明显的风味，如香草、香料、坚果或胡椒味，酸味和甜味达到了良好的平衡。不过，这里的咖啡也会受到马铃薯病害的影响。
+
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗、日晒">
+<div class="content">
+    <img src="图片素材/埃塞俄比亚.jpg" alt="" class="img">
+    <h2 class="content-title">埃塞俄比亚</h2>
+    <p class="content-desc">
+        埃塞俄比亚是最受认可的精品咖啡的产地之一，拥有能种植出世界上最好的咖啡的土壤，阿拉比卡咖啡首先在埃塞俄比亚境内被发现并不是偶然。这一产区最令人激动的是，其数百种原生种品种由许多小生产者培育（你会经常在埃塞俄比亚咖啡包装袋上看到“原生种”这个词，它是品种而不是地区）。正因为如此，尽管埃塞俄比亚咖啡都以浓郁的花香或果味著称，但风味各异。也就是说，某些种植区比其他种植区更有特点。例如耶加雪菲，它是南方西达摩种植区中的一小片区域，以生产具有伯爵红茶味道的咖啡而闻名。埃塞俄比亚的咖啡不管呈现出何种味道，其风味都既突出又浓郁，人们品尝后都会说：这不只是一杯咖啡。埃塞俄比亚咖啡是第一款让人们发出如此感慨的咖啡，你无须费力就能冲煮出一杯风味很好的咖啡。它是初学者最好的选择。
+
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/肯尼亚.jpg" alt="" class="img">
+    <h2 class="content-title">肯尼亚</h2>
+    <p class="content-desc">
+        肯尼亚是另一个咖啡的重磅产区，以种植世界上品质最高的咖啡而闻名。即使是中等品质的肯尼亚咖啡，也能与其他国家最高品质的咖啡相提并论。在高海拔生长的肯尼亚咖啡具有独特的明亮酸味，其中某些品种，包括SL28，有非常明显的黑醋栗味，还有浆果、热带水果和柑橘类水果（尤其是葡萄柚）的味道。
+
+    </p>
+</div>
+</div>
+<div class="item" data-text="水洗">
+<div class="content">
+    <img src="图片素材/云南咖啡.jpg" alt="" class="img">
+    <h2 class="content-title">云南咖啡</h2>
+    <p class="content-desc">
+        云南省的西部和南部地处北纬15°至北回归线之间，地形以山地、坡地为主，且起伏较大、土壤肥沃、日照充足、雨量丰富、昼夜温差大，这些独特的自然条件形成了云南小粒种咖啡品味的特殊性—浓而不苦，香而不烈，略带果味。早在五十年代，云南小粒种咖啡就在国际咖啡市场上大受欢迎，被评定为咖啡中的上品。云南咖啡宜植区分布在云南南部和西南部的思茅、版纳、文山、保山、德宏等地区。
+    </p>
+</div>
+</div>
+<div class="item" data-text="明亮酸">
+<div class="content">
+    <img src="图片素材/水洗.jpg" alt="" class="img">
+    <h2 class="content-title">水洗处理</h2>
+    <p class="content-desc">
+        顾名思义，水洗处理法就是用水来去除咖啡果肉。在通常情况下，处理的过程是这样的：将咖啡果实倒入一台机器（制浆机或果肉分离机）里，去除果实的外皮。随后咖啡被转移到水箱或水槽中，在那里进行发酵。发酵的时长和用水量因产区和生产商而异，但目的是相同的：把咖啡豆从剩余的果肉中分离出来。发酵完成后，剩余的果肉会分解并被水冲走。一旦豆子被完全分离出来，就从水中取出，转移到太阳下晒干。定期用耙子把咖啡豆耙平，使豆子均匀缓慢地干燥。一些生产者用机械方式干燥咖啡豆，特别是在没有漫长旱季的地区。
+    </p>
+</div>
+</div>
+<div class="item" data-text="果味浓，酸度低">
+<div class="content">
+    <img src="图片素材/日晒.jpg" alt="" class="img">
+    <h2 class="content-title">日晒处理</h2>
+    <p class="content-desc">
+        在果肉分离机器发明以前，所有的咖啡都使用日晒处理法——在采摘咖啡果实后，先不去除果肉，而是先把咖啡果实晒干到可以被机器剥离的程度。正因如此，咖啡果实的味道在干燥过程中会进入豆子，而不像水洗法那样被洗掉。日晒处理法带来的风味非常独特，比水洗的豆子水果味更浓，酸度更低。对生产商来说，要把日晒咖啡做到完美颇具挑战性，需要额外的时间和精力，因为温暖潮湿的咖啡豆容易因霉菌、腐烂和其他问题而产生异味。
+    </p>
+</div>
+</div>
+<div class="item" data-text="酸度保留、甜感、泥土感">
+<div class="content">
+    <img src="图片素材/蜜处理.jpg" alt="" class="img">
+    <h2 class="content-title">蜜处理</h2>
+    <p class="content-desc">
+        果肉日晒处理法是从巴西引进的，现已传播到中美洲，特别是哥斯达黎加。这种处理法也被称为蜜处理。它的处理过程与水洗法类似，不同的是，咖啡在经过果肉分离机剥离果皮之后，直接进入干燥阶段，部分果肉仍然完好无损。从技术上说，真正的果肉日晒法或蜜处理法是在果肉保留的情况下干燥的，但是现在关于这一过程有许多不同的称呼，比如红蜜、黄蜜、黑蜜和半水洗。它们的差异在于干燥前果肉保留了多少，不同生产商使用的处理法也有很大差异。让事情变得更复杂的是，行业似乎还没有给这些术语下确切的定义，所以这一切都有些不确定。跟你想的一样，蜜处理的咖啡豆具有一些水洗的特性和一些日晒的特性，既保留了水洗咖啡的酸度，也获得了日晒咖啡的醇厚度、甜感和泥土感，只是缺少了浓郁的水果味。
+    </p>
+</div>
+</div>
+        
+`
+      for (let i = 0; i < 1; i++) {
+        box.innerHTML += child;
+      }
+    }
+    createChild();
+  </script>
+     <script src="./index.js"></script>
+     <script>
+       let selectors = {
+     id: document.querySelector("#shell"),
+     item: document.querySelectorAll("#shell .item"),
+     activeClass: "item--active",
+     img: ".img"
+   };
+   // 将第一个时间轴项目激活，并设置时间轴背景图片为第一个项目的图片
+   selectors.item[0].classList.add(selectors.activeClass);
+   selectors.id.style.backgroundImage = `url(${selectors.item[0].querySelector(selectors.img).getAttribute("src")})`;
+   // 获取时间轴项目的总数
+   let timeLength = selectors.item.length;
+   // 当页面滚动时触发滚动事件
+   window.addEventListener("scroll", function () {
+     let max, min;
+     // 获取页面滚动距离
+     let pos = window.scrollY;
+     selectors.item.forEach(function (item, i) {
+       // 获取当前时间轴项目的最小和最大高度
+       min = item.offsetTop;
+       max = item.offsetHeight + item.offsetTop;
+       // 如果滚动到最后一个项目，并且超过了当前项目高度的一半，
+       // 则将最后一个项目设置为激活状态，并设置背景图片为最后一个项目的图片
+       if (i === timeLength - 2 && pos > min + item.offsetHeight / 2) {
+         selectors.item.forEach(function (item) {
+           item.classList.remove(selectors.activeClass);
+         });
+         selectors.id.style.backgroundImage = `url(${selectors.item[timeLength - 1].querySelector(selectors.img).getAttribute("src")})`;
+         selectors.item[timeLength - 1].classList.add(selectors.activeClass);
+       }
+       // 如果当前滚动位置在当前项目的最小和最大高度之间
+       // 则将当前项目设置为激活状态，并设置背景图片为当前项目的图片
+       else if (pos <= max - 10 && pos >= min) {
+         selectors.id.style.backgroundImage = `url(${item.querySelector(selectors.img).getAttribute("src")})`;
+         selectors.item.forEach(function (item) {
+           item.classList.remove(selectors.activeClass);
+         });
+         item.classList.add(selectors.activeClass);
+       }
+     });
+   });
+     </script>
+</body>
+</html>
